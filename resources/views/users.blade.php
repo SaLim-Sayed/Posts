@@ -9,9 +9,5 @@ users
 @endsection
 
 
-@section('sidebar')
-@parent
 
-<h5>this is user sidebar</h5>
-@endsection
 

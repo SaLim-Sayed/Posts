@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -36,6 +37,13 @@ Route::controller(PostController::class)->prefix('posts')->group(function () {
     Route::get('/restore/{id}', 'restore')->name('posts.restore');
     Route::get('/forceDelete/{id}', 'forceDelete')->name('posts.forceDelete');
 
+});
+
+
+
+Route::controller( UserController::class)->prefix('users')->group(function(){
+    Route::get('/','index')->name('users.index');
+    Route::get('/delete/{id}', 'delete')->name('users.delete');
 
 });
 

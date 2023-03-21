@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone'
     ];
 
     /**
@@ -41,4 +42,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function phone(){
+        return $this->hasOne(Phone::class);
+    }
+    public function roles(){
+        return $this->belongsToMany(Role::class,'role_user_pivot');
+    }
 }
