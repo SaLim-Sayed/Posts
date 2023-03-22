@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
     ];
 
     /**
@@ -43,10 +43,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function phone(){
+    public function phone()
+    {
         return $this->hasOne(Phone::class);
     }
-    public function roles(){
-        return $this->belongsToMany(Role::class,'role_user_pivot');
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user_pivot');
     }
 }

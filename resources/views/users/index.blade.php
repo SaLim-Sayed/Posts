@@ -15,15 +15,16 @@
                         <div class="fw-bold">
                             <h3>{{ $user->name }}</h3>
                             <ul>
+                                
                                 <h5>Role</h5>
                                 <ul>
                                     @foreach ($user->roles as $role)
-                                        <li>{{ $role->role_name }} </li>
+                                        <li>{{ ($role->role_name )}} </li>
                                     @endforeach
                                 </ul>
                             </ul>
                         </div>
-                        mobile number is <mark> {{ $user->phone->number }}</mark>
+                        mobile number is <mark> {{ ($user->phone->number)??'not valid' }}</mark>
 
                     </div>
                     <a href="{{ route('users.delete', $user->id) }} " class="btn btn-danger">delete</a>
