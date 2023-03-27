@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidationRequest;
 use App\Models\Post;
+use App\Models\User;
+use App\Notifications\CreatePost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
 {
@@ -14,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(1);
         return view('posts.index', compact('posts'));
     }
 
@@ -36,6 +39,10 @@ class PostController extends Controller
             'title' => $request->title,
             'body' => $request->body,
         ]);
+        $users=User::where('id' ,'!=',auth()->user()->id);
+
+        $user_create=auth()->user()->name;
+        // Notification::send($users,new CreatePost($post->id ));
         return redirect()->route('posts.index')->with(['success' =>"[ ". $post->title ." ] => is added successfully"]);
     }
 

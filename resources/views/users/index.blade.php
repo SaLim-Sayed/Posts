@@ -5,40 +5,51 @@
 @endsection
 
 @section('content')
-    <div class="container card w-70 bg-secondary-subtle" style="width: 800px">
-
+    <div class="container card w-70 bg-secondary-subtle scr" style="width: 800px"  >
         @foreach ($users as $user)
-            <ol class="list-group list-group-numbered ">
+            <div class="fw-bold container btn btn-dark my-2 d-flex justify-content-between align-items-start">
 
-                <li class="bg-success-subtle list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">
-                            <h3>{{ $user->name }}</h3>
+
+                <span class="my-2 ms-2 me-auto">  <b
+                        class="h2">{{ $user->id }} - {{ $user->name }} </b></span>
+                <a href="{{ route('users.delete', $user->id) }}  " class="btn btn-danger mt-2">Delete </a>
+
+            </div>
+
+            <li class="list-group list-group-numbered ">
+
+            <li class="bg-success-subtle list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+
+                        <ul>
+                            <h5>Role</h5>
                             <ul>
-                                
-                                <h5>Role</h5>
-                                <ul>
-                                    @foreach ($user->roles as $role)
-                                        <li>{{ ($role->role_name )}} </li>
-                                    @endforeach
-                                </ul>
+                                @forelse ($user->roles as $role)
+                                    <li>{{ $role->role_name }} </li>
+                                @empty
+                                    <li>User</li>
+                                @endforelse
                             </ul>
-                        </div>
-                        mobile number is <mark> {{ ($user->phone->number)??'not valid' }}</mark>
+                            <hr>
+                            mobile number is <mark> {{ $user->phone->number ?? 'not valid' }}</mark>
+
+                        </ul>
 
                     </div>
-                    <a href="{{ route('users.delete', $user->id) }} " class="btn btn-danger">delete</a>
 
-                    {{-- <span>
+                </div>
+                {{-- <a href="{{ route('users.delete', $user->id) }} " class="btn btn-danger">delete</a>
+
+                <span>
                         <a href="{{ route('posts.show', $post->id) }} " class="btn btn-primary">show</a>
                         <a href="{{ route('posts.edit', $post->id) }} "class="btn btn-info">edit</a>
                         <a href="{{ route('posts.delete', $post->id) }} " class="btn btn-danger">delete</a>
                     </span> --}}
-                    <span class="badge bg-primary rounded-pill m-2">{{ $user->id }}</span>
-                </li>
-                <hr>
+            </li>
+            <hr>
         @endforeach
-        </ol>
+        </li>
         {{-- {{ $posts->links() }} --}}
     </div>
 @endsection

@@ -37,9 +37,9 @@
                         </ul>
                     </div>
                     <span>
-                        <a href="{{ route('posts.show', $post->id) }} " class="btn btn-primary">show</a>
-                        <a href="{{ route('posts.edit', $post->id) }} "class="btn btn-info">edit</a>
-                        <a href="{{ route('posts.delete', $post->id) }} " class="btn btn-danger">delete</a>
+                        <a href="{{ route('posts.show', $post->id) }} " class="btn btn-primary mt-2">show</a>
+                        <a href="{{ route('posts.edit', $post->id) }} "class="btn btn-info mt-2">edit</a>
+                        <a href="{{ route('posts.delete', $post->id) }} " class="btn btn-danger mt-2">delete</a>
                     </span>
                 </li>
                 <hr>
@@ -47,6 +47,6 @@
         @endforeach
         </ol>
 
-        {{-- {{ $posts->links() }} --}}
+        {{ $posts->links() }}
     </div>
 @endsection

@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Mail\TestsMail;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +27,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        User::created(function ($user ) {
+            Mail::to($user)->send(new TestsMail($user));
+        });
+
+
+
+
+
+
         Paginator::useBootstrapFive();
         Paginator::useBootstrapFour();
     }
