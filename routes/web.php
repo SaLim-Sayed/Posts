@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function(){
 /* Route::get('/send', function () {
     Mail::to('salimcse981@yahoo.com')->send(new TestsMail());
     return response('sending');
-}) ;
+}) ;*/
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
